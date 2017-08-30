@@ -1,3 +1,8 @@
+/**
+
+Variables
+
+**/
 $white: #FFF;
 $black: #252525;
 
@@ -17,13 +22,19 @@ $light-green: #6ed06c;
 $green: #51cc50;
 $dark-green: #409c3f;
 
+$br: 2px;
+
+/**
+
+Toast styles
+
+**/
 .toast {
-  display: inline-block;
+  display: inline;
   position: fixed;
   top: 0.25em;
   left: 0;
   right: 0;
-  width: 100%;
   max-width: 400px;
   transform: scale(0);
 
@@ -33,7 +44,7 @@ $dark-green: #409c3f;
   }
   padding: 1em;
   color: $white;
-  border-radius: $br-block;
+  border-radius: $br;
   text-align: center;
 
   z-index: 9999;
@@ -79,7 +90,7 @@ $dark-green: #409c3f;
 }
 
 #sc-confirm {
-  display: inline-block;
+  display: inline;
   position: fixed;
   top: 35%;
   left: 0;
@@ -93,7 +104,7 @@ $dark-green: #409c3f;
     left: auto;
   }
   padding: 1em;
-  border-radius: $br-block;
+  border-radius: $br;
 
   background: $dark-white;
   border-bottom: 4px solid $grey;
@@ -121,18 +132,39 @@ $dark-green: #409c3f;
   }
 
   button {
-    @extend .button;
+    display: inline-block;
+    background: transparent;
+    border-radius: $br-block;
+    border: 1px solid $blue;
+    padding: 0.7em 1em;
+    color: $blue;
+    font-size: 1em;
+    outline: none;
+    overflow: hidden;
+    cursor: pointer;
+    background: $white;
+    box-shadow: none;
     font-size: 0.9em;
 
     &:first-of-type {
-      @extend .button.danger;
-      @extend .button.border;
+      color: $red;
+      border: none;
+      border-bottom: 2px solid $red;
+
+      &:hover, &.active {
+        background: $red;
+        color: $white;
+      }
     }
 
     &:last-of-type {
-      @extend .button.primary;
-      @extend .button.primary.full;
       float: right;
+      background: $blue;
+      color: $white;
+
+      &:hover {
+        background: $dark-blue;
+      }
     }
   }
 
