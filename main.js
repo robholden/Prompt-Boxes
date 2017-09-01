@@ -13,9 +13,20 @@ document.getElementById('pb-toast-info').onclick = () => {
 }
 
 document.getElementById('pb-confirm').onclick = () => {
-  pb.confirm((outcome) => alert(`You have: ${ outcome ? 'confirmed' : 'cancelled' }`),'This is an example confirm');
+  pb.confirm(
+    (outcome) => alert(`You have: ${ outcome ? 'confirmed' : 'cancelled' }`), // Callback
+    'This is an example confirm', // Label text
+    'Yes',                        // Confirm text
+    'No'                          // Cancel text
+  );
 }
 
 document.getElementById('pb-prompt').onclick = () => {
-  pb.prompt((value) => alert(`You have: ${ value ? `entered ${ value }` : 'cancelled' }`),'This is an example prompt');
+  pb.prompt(
+    (value) => alert(`You have: ${ value ? `entered ${ value }` : 'cancelled' }`), // Callback
+    'This is an example prompt',  // Label text
+    'text',                       // Input type
+    'Submit',                     // Submit text
+    'Cancel'                      // Cancel text
+  );
 }

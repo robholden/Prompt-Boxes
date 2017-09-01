@@ -8,12 +8,24 @@ A small package I created for my own project so currently there's limited functi
 ~~~
 var pb = require('prompt-boxes');
 
-pb.success('Your message');
-pb.error('Your message');
-pb.info('Your message');
+pb.success('This is an example success toast');
+pb.error('This is an example error toast');
+pb.info('This is an example info toast');
 
-pb.confirm(() => alert('You have confirmed'), 'A confirm message', 'Yes', 'No');
-pb.prompt((value) => alert(`You have entered ${ value }`), 'A prompt message', 'email', 'Submit', 'Cancel');
+pb.confirm(
+  (outcome) => alert(`You have: ${ outcome ? 'confirmed' : 'cancelled' }`), // Callback
+  'This is an example confirm', // Label text
+  'Yes',                        // Confirm text
+  'No'                          // Cancel text
+);
+
+pb.prompt(
+  (value) => alert(`You have: ${ value ? `entered ${ value }` : 'cancelled' }`), // Callback
+  'This is an example prompt',  // Label text
+  'text',                       // Input type
+  'Submit',                     // Submit text
+  'Cancel'                      // Cancel text
+);
 ~~~
 
 ## Style Sheet (scss)
