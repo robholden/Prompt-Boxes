@@ -1,0 +1,143 @@
+/** Variables **/
+body {
+  font-family: sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.toast, #sc-confirm, #sc-backdrop {
+  transition: ease 0.25s;
+}
+.toast a, .toast button, .toast input, .toast textarea, .toast select, .toast div, #sc-confirm a, #sc-confirm button, #sc-confirm input, #sc-confirm textarea, #sc-confirm select, #sc-confirm div, #sc-backdrop a, #sc-backdrop button, #sc-backdrop input, #sc-backdrop textarea, #sc-backdrop select, #sc-backdrop div {
+  transition: ease 0.25s;
+}
+
+/** Toast styles **/
+.toast {
+  display: inline;
+  position: fixed;
+  top: 0.25em;
+  left: 0;
+  right: 0;
+  max-width: 400px;
+  transform: scale(0);
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1em;
+  color: #FFF;
+  border-radius: 2px;
+  text-align: center;
+  z-index: 9999;
+}
+.toast.success {
+  background: #4591bf;
+  border-bottom: 4px solid #366988;
+}
+.toast.error {
+  background: #da4242;
+  border-bottom: 4px solid #af3535;
+}
+.toast.info {
+  color: #252525;
+  background: #EEE;
+  border-bottom: 4px solid #CCC;
+}
+.toast.show {
+  transform: scale(1);
+}
+.toast.gone {
+  transform: scale(0);
+}
+
+#sc-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9998;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+#sc-backdrop.show {
+  opacity: 1;
+}
+
+#sc-confirm {
+  display: inline;
+  position: fixed;
+  top: 35%;
+  left: 0;
+  right: 0;
+  max-width: 375px;
+  transform: scale(0);
+  margin-top: -50px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 1em;
+  border-radius: 2px;
+  background: #FFF;
+  border-bottom: 4px solid #CCC;
+  z-index: 9999;
+}
+#sc-confirm p {
+  font-size: 1.05em;
+  margin: 0 0 0.75em;
+}
+#sc-confirm input {
+  display: block;
+  width: 100%;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border: 1px solid #EEE;
+  font-size: 1em;
+  border-radius: 2px;
+}
+#sc-confirm input:focus, #sc-confirm input:active {
+  outline: none;
+  border-color: #CCC;
+}
+#sc-confirm button {
+  display: inline-block;
+  background: transparent;
+  border-radius: 2px;
+  border: 1px solid #4591bf;
+  padding: 0.5em 1em;
+  color: #4591bf;
+  font-size: 1em;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  background: #FFF;
+  box-shadow: none;
+  font-size: 0.9em;
+}
+#sc-confirm button:first-of-type {
+  color: #da4242;
+  border: none;
+  border-bottom: 2px solid #da4242;
+}
+#sc-confirm button:first-of-type:hover, #sc-confirm button:first-of-type.active {
+  background: #da4242;
+  color: #FFF;
+}
+#sc-confirm button:first-of-type[disabled] {
+  opacity: 0.5;
+  background: none;
+  border-color: #CCC;
+  color: #999;
+  cursor: not-allowed;
+}
+#sc-confirm button:last-of-type {
+  float: right;
+  background: #4591bf;
+  color: #FFF;
+}
+#sc-confirm button:last-of-type:hover {
+  background: #366988;
+}
+#sc-confirm.show {
+  transform: scale(1);
+}

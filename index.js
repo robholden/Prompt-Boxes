@@ -24,9 +24,12 @@ module.exports = {
     sc_confirm_yes.id = "sc-confirm-yes";
     sc_confirm_no.id = "sc-confirm-no";
 
-    const destroy = () => {
+    const destroy = (outcome) => {
       sc_backdrop.className = '';
       sc_confirm.className = '';
+
+      callback(outcome || false);
+
       setTimeout(() => {
         sc_backdrop.remove();
         sc_confirm.remove();
@@ -34,8 +37,7 @@ module.exports = {
     };
 
     sc_confirm_yes.onclick = () => {
-      destroy();
-      callback();
+      destroy(true);
     }
     sc_confirm_no.onclick = () => destroy();
 
@@ -81,9 +83,14 @@ module.exports = {
     sc_confirm_yes.id = "sc-confirm-yes";
     sc_confirm_no.id = "sc-confirm-no";
 
-    const destroy = () => {
+    sc_confirm_yes.setAttribute("disabled", "disabled");
+
+    const destroy = (outcome) => {
       sc_backdrop.className = '';
       sc_confirm.className = '';
+
+      callback(outcome || false);
+
       setTimeout(() => {
         sc_backdrop.remove();
         sc_confirm.remove();
@@ -97,19 +104,20 @@ module.exports = {
         return;
       }
 
-      destroy();
-      callback(val);
+      destroy(val);
     }
     sc_confirm_input.onkeyup = (ev) => {
+      const val = sc_confirm_input.value;
+      if (val === '') {
+        sc_confirm_yes.setAttribute("disabled", "disabled");
+        return;
+      }
+      sc_confirm_yes.removeAttribute("disabled");
+      
       if (ev.keyCode !== 13)
         return;
 
-      const val = sc_confirm_input.value;
-      if (val === '')
-        return;
-
-      destroy();
-      callback(val);
+      destroy(val);
     }
     sc_confirm_no.onclick = () => destroy();
 

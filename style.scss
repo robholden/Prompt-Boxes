@@ -1,8 +1,4 @@
-/**
-
-Variables
-
-**/
+/** Variables **/
 $white: #FFF;
 $black: #252525;
 
@@ -24,11 +20,23 @@ $dark-green: #409c3f;
 
 $br: 2px;
 
-/**
+body {
+  font-family: sans-serif;
+}
 
-Toast styles
+* {
+  box-sizing: border-box;
+}
 
-**/
+.toast, #sc-confirm, #sc-backdrop {
+  transition: ease 0.25s;
+
+  a, button, input, textarea, select, div {
+    transition: ease 0.25s;
+  }
+}
+
+/** Toast styles **/
 .toast {
   display: inline;
   position: fixed;
@@ -106,37 +114,37 @@ Toast styles
   padding: 1em;
   border-radius: $br;
 
-  background: $dark-white;
+  background: $white;
   border-bottom: 4px solid $grey;
 
   z-index: 9999;
 
   p {
     font-size: 1.05em;
-    margin-bottom: 1.25em;
+    margin: 0 0 0.75em;
   }
 
   input {
     display: block;
     width: 100%;
-    padding: 0.75em;
+    padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid $light-grey;
     font-size: 1em;
-    border-radius: $br-input;
+    border-radius: $br;
 
     &:focus, &:active {
       outline: none;
-      @extend .lt-shadow;
+      border-color: $grey;
     }
   }
 
   button {
     display: inline-block;
     background: transparent;
-    border-radius: $br-block;
+    border-radius: $br;
     border: 1px solid $blue;
-    padding: 0.7em 1em;
+    padding: 0.5em 1em;
     color: $blue;
     font-size: 1em;
     outline: none;
@@ -154,6 +162,14 @@ Toast styles
       &:hover, &.active {
         background: $red;
         color: $white;
+      }
+
+      &[disabled] {
+        opacity: 0.5;
+        background: none;
+        border-color: $grey;
+        color: $dark-grey;
+        cursor: not-allowed;
       }
     }
 
