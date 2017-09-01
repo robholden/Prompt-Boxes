@@ -4,6 +4,9 @@ A small package I created for my own project so currently there's limited functi
 ## Installation
 ``npm install prompt-boxes --save``
 
+## Screenshots
+<img src="https://media.giphy.com/media/oXcJZgdxOLBvy/giphy.gif" width="275"> <img src="https://media.giphy.com/media/OAscHqRSi6a9W/giphy.gif" width="275"> <img src="https://media.giphy.com/media/10BsPpLXKTW67m/giphy.gif" width="275">
+
 ## Usage
 ~~~
 var pb = require('prompt-boxes');
