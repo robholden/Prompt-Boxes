@@ -123,13 +123,6 @@ body {
   background: #da4242;
   color: #FFF;
 }
-#sc-confirm button:first-of-type[disabled] {
-  opacity: 0.5;
-  background: none;
-  border-color: #CCC;
-  color: #999;
-  cursor: not-allowed;
-}
 #sc-confirm button:last-of-type {
   float: right;
   background: #4591bf;
@@ -137,6 +130,13 @@ body {
 }
 #sc-confirm button:last-of-type:hover {
   background: #366988;
+}
+#sc-confirm button:last-of-type[disabled] {
+  opacity: 0.5;
+  background: none;
+  border-color: #CCC;
+  color: #999;
+  cursor: not-allowed;
 }
 #sc-confirm.show {
   transform: scale(1);

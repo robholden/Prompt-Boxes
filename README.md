@@ -184,14 +184,6 @@ body {
         background: $red;
         color: $white;
       }
-
-      &[disabled] {
-        opacity: 0.5;
-        background: none;
-        border-color: $grey;
-        color: $dark-grey;
-        cursor: not-allowed;
-      }
     }
 
     &:last-of-type {
@@ -201,6 +193,14 @@ body {
 
       &:hover {
         background: $dark-blue;
+      }
+      
+      &[disabled] {
+        opacity: 0.5;
+        background: none;
+        border-color: $grey;
+        color: $dark-grey;
+        cursor: not-allowed;
       }
     }
   }
