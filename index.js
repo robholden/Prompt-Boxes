@@ -3,7 +3,11 @@ module.exports = {
     max: 5
   },
 
-  confirm: function(callback, msg = 'Are you sure?', yes = 'Yes', no = 'Cancel') {
+  confirm: function (callback, msg, yes, no) {
+    if (!msg) msg = 'Are you sure?';
+    if (!yes) yes = 'Yes';
+    if (!no) no = 'Cancel';
+
     const oldC = document.getElementById("sc-confirm");
     const oldB = document.getElementById("sc-backdrop");
     if (oldC) oldC.remove();
@@ -24,22 +28,22 @@ module.exports = {
     sc_confirm_yes.id = "sc-confirm-yes";
     sc_confirm_no.id = "sc-confirm-no";
 
-    const destroy = (outcome) => {
+    var destroy = function(outcome) {
       sc_backdrop.className = '';
       sc_confirm.className = '';
 
       callback(outcome || false);
 
-      setTimeout(() => {
+      setTimeout(function() {
         sc_backdrop.remove();
         sc_confirm.remove();
       }, 1000);
     };
 
-    sc_confirm_yes.onclick = () => {
+    sc_confirm_yes.onclick = function() {
       destroy(true);
     }
-    sc_confirm_no.onclick = () => destroy();
+    sc_confirm_no.onclick = function() { destroy(); }
 
     sc_confirm.appendChild(sc_confirm_msg);
     sc_confirm.appendChild(sc_confirm_no);
@@ -47,19 +51,24 @@ module.exports = {
 
     document.getElementsByTagName('body')[0].appendChild(sc_backdrop);
     document.getElementsByTagName('body')[0].appendChild(sc_confirm);
-    document.getElementsByTagName('body')[0].onkeyup = (ev) => {
+    document.getElementsByTagName('body')[0].onkeyup = function (ev) {
       if (ev.keyCode === 27)
         destroy();
     }
 
-    setTimeout(() => {
+    setTimeout(function() {
       sc_confirm_yes.focus();
       sc_backdrop.className = 'show';
       sc_confirm.className = 'show';
     }, 50);
   },
   
-  prompt: function(callback, msg, type = 'text', submit = 'Submit', no = 'Cancel') {
+  prompt: function(callback, msg, type, submit, no) {
+    if (!msg) msg = 'Are you sure?';
+    if (!type) type = 'text';
+    if (!submit) submit = 'Submit';
+    if (!no) no = 'Cancel';
+
     const oldC = document.getElementById("sc-confirm");
     const oldB = document.getElementById("sc-backdrop");
     if (oldC) oldC.remove();
@@ -85,19 +94,19 @@ module.exports = {
 
     sc_confirm_yes.setAttribute("disabled", "disabled");
 
-    const destroy = (outcome) => {
+    const destroy = function (outcome) {
       sc_backdrop.className = '';
       sc_confirm.className = '';
 
       callback(outcome || false);
 
-      setTimeout(() => {
+      setTimeout(function() {
         sc_backdrop.remove();
         sc_confirm.remove();
       }, 1000);
     };
 
-    sc_confirm_yes.onclick = () => {
+    sc_confirm_yes.onclick = function() {
       const val = sc_confirm_input.value;
       if (val === '') {
         sc_confirm_input.focus();
@@ -106,7 +115,7 @@ module.exports = {
 
       destroy(val);
     }
-    sc_confirm_input.onkeyup = (ev) => {
+    sc_confirm_input.onkeyup = function(ev) {
       const val = sc_confirm_input.value;
       if (val === '') {
         sc_confirm_yes.setAttribute("disabled", "disabled");
@@ -119,7 +128,7 @@ module.exports = {
 
       destroy(val);
     }
-    sc_confirm_no.onclick = () => destroy();
+    sc_confirm_no.onclick = function() { destroy(); }
 
     sc_confirm.appendChild(sc_confirm_msg);
     sc_confirm.appendChild(sc_confirm_input);
@@ -128,12 +137,12 @@ module.exports = {
 
     document.getElementsByTagName('body')[0].appendChild(sc_backdrop);
     document.getElementsByTagName('body')[0].appendChild(sc_confirm);
-    document.getElementsByTagName('body')[0].onkeyup = (ev) => {
+    document.getElementsByTagName('body')[0].onkeyup = function(ev) {
       if (ev.keyCode === 27)
         destroy();
     }
 
-    setTimeout(() => {
+    setTimeout(function() {
       sc_confirm_input.focus();
       sc_backdrop.className = 'show';
       sc_confirm.className = 'show';
@@ -141,7 +150,7 @@ module.exports = {
   },
 
   show: function(msg, state) {
-    const className = `${ state ? 'success' : (state === false ? 'error' : 'info') }`;
+    const className = state ? 'success' : (state === false ? 'error' : 'info');
     const curr = document.getElementsByClassName('toast');
     const toast = document.createElement('div');
     const t = document.createTextNode(msg);
@@ -158,17 +167,17 @@ module.exports = {
   
       if ((i + 1) < this.opts.max) {
         h += (el.clientHeight + 10);
-        el.style.marginTop = `${ h }px`;
+        el.style.marginTop = h + 'px';
       } else {
-        el.className = `toast gone ${ className }`;
+        el.className = 'toast gone ' + className;
       }
     }
   
     document.getElementsByTagName('body')[0].appendChild(toast);
   
-    setTimeout(() => toast.className = `toast show ${ className }`, 50);
-    setTimeout(() => toast.className = `toast gone ${ className }`, 5000);
-    setTimeout(() => toast.remove(), 6000);
+    setTimeout(function() { toast.className = 'toast show ' + className; }, 50);
+    setTimeout(function() { toast.className = 'toast gone ' + className; }, 5000);
+    setTimeout(function() { toast.remove(); }, 6000);
   },
 
   success: function(msg) {
