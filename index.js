@@ -8,16 +8,16 @@ module.exports = {
     if (!yes) yes = 'Yes';
     if (!no) no = 'Cancel';
 
-    const oldC = document.getElementById("sc-confirm");
-    const oldB = document.getElementById("sc-backdrop");
+    var oldC = document.getElementById("sc-confirm");
+    var oldB = document.getElementById("sc-backdrop");
     if (oldC) oldC.remove();
     if (oldB) oldB.remove();
 
-    const sc_backdrop = document.createElement('div');
-    const sc_confirm = document.createElement('div');
-    const sc_confirm_msg = document.createElement('p');
-    const sc_confirm_yes = document.createElement('button');
-    const sc_confirm_no = document.createElement('button');
+    var sc_backdrop = document.createElement('div');
+    var sc_confirm = document.createElement('div');
+    var sc_confirm_msg = document.createElement('p');
+    var sc_confirm_yes = document.createElement('button');
+    var sc_confirm_no = document.createElement('button');
 
     sc_confirm_msg.innerHTML = msg;
     sc_confirm_no.innerHTML = no;
@@ -69,17 +69,17 @@ module.exports = {
     if (!submit) submit = 'Submit';
     if (!no) no = 'Cancel';
 
-    const oldC = document.getElementById("sc-confirm");
-    const oldB = document.getElementById("sc-backdrop");
+    var oldC = document.getElementById("sc-confirm");
+    var oldB = document.getElementById("sc-backdrop");
     if (oldC) oldC.remove();
     if (oldB) oldB.remove();
 
-    const sc_backdrop = document.createElement('div');
-    const sc_confirm = document.createElement('div');
-    const sc_confirm_input = document.createElement('input');
-    const sc_confirm_msg = document.createElement('p');
-    const sc_confirm_yes = document.createElement('button');
-    const sc_confirm_no = document.createElement('button');
+    var sc_backdrop = document.createElement('div');
+    var sc_confirm = document.createElement('div');
+    var sc_confirm_input = document.createElement('input');
+    var sc_confirm_msg = document.createElement('p');
+    var sc_confirm_yes = document.createElement('button');
+    var sc_confirm_no = document.createElement('button');
 
     sc_confirm_input.type = type;
     sc_confirm_msg.innerHTML = msg;
@@ -94,7 +94,7 @@ module.exports = {
 
     sc_confirm_yes.setAttribute("disabled", "disabled");
 
-    const destroy = function (outcome) {
+    var destroy = function (outcome) {
       sc_backdrop.className = '';
       sc_confirm.className = '';
 
@@ -107,7 +107,7 @@ module.exports = {
     };
 
     sc_confirm_yes.onclick = function() {
-      const val = sc_confirm_input.value;
+      var val = sc_confirm_input.value;
       if (val === '') {
         sc_confirm_input.focus();
         return;
@@ -116,7 +116,7 @@ module.exports = {
       destroy(val);
     }
     sc_confirm_input.onkeyup = function(ev) {
-      const val = sc_confirm_input.value;
+      var val = sc_confirm_input.value;
       if (val === '') {
         sc_confirm_yes.setAttribute("disabled", "disabled");
         return;
@@ -150,10 +150,10 @@ module.exports = {
   },
 
   show: function(msg, state) {
-    const className = state ? 'success' : (state === false ? 'error' : 'info');
-    const curr = document.getElementsByClassName('toast');
-    const toast = document.createElement('div');
-    const t = document.createTextNode(msg);
+    var className = state ? 'success' : (state === false ? 'error' : 'info');
+    var curr = document.getElementsByClassName('toast');
+    var toast = document.createElement('div');
+    var t = document.createTextNode(msg);
   
     toast.appendChild(t);
     toast.className = className;
@@ -161,9 +161,9 @@ module.exports = {
     toast.id = 'toast_' + (new Date).toISOString();
     toast.className = 'toast';
   
-    let h = 0;
-    for (let i = 0; i < curr.length; i++) {
-      const el = document.getElementById(curr[(curr.length - 1) - i].id);
+    var h = 0;
+    for (var i = 0; i < curr.length; i++) {
+      var el = document.getElementById(curr[(curr.length - 1) - i].id);
   
       if ((i + 1) < this.opts.max) {
         h += (el.clientHeight + 10);
