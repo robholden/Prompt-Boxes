@@ -3,15 +3,21 @@ module.exports = {
     max: 5
   },
 
+  rmBackDrop: function () {
+    try {
+      var oldC = document.getElementById("sc-confirm");
+      var oldB = document.getElementById("sc-backdrop");
+      if (oldC) oldC.remove();
+      if (oldB) oldB.remove();
+    } catch(ex) {}
+  },
+
   confirm: function (callback, msg, yes, no) {
     if (!msg) msg = 'Are you sure?';
     if (!yes) yes = 'Yes';
     if (!no) no = 'Cancel';
 
-    var oldC = document.getElementById("sc-confirm");
-    var oldB = document.getElementById("sc-backdrop");
-    if (oldC) oldC.remove();
-    if (oldB) oldB.remove();
+    this.rmBackDrop();
 
     var sc_backdrop = document.createElement('div');
     var sc_confirm = document.createElement('div');
@@ -35,8 +41,10 @@ module.exports = {
       callback(outcome || false);
 
       setTimeout(function() {
-        sc_backdrop.remove();
-        sc_confirm.remove();
+        try {
+          sc_backdrop.remove();
+          sc_confirm.remove();
+        } catch(ex) {}
       }, 1000);
     };
 
@@ -69,10 +77,7 @@ module.exports = {
     if (!submit) submit = 'Submit';
     if (!no) no = 'Cancel';
 
-    var oldC = document.getElementById("sc-confirm");
-    var oldB = document.getElementById("sc-backdrop");
-    if (oldC) oldC.remove();
-    if (oldB) oldB.remove();
+    this.rmBackDrop();
 
     var sc_backdrop = document.createElement('div');
     var sc_confirm = document.createElement('div');
@@ -101,8 +106,10 @@ module.exports = {
       callback(outcome || false);
 
       setTimeout(function() {
-        sc_backdrop.remove();
-        sc_confirm.remove();
+        try {
+          sc_backdrop.remove();
+          sc_confirm.remove();
+        } catch(ex) {}
       }, 1000);
     };
 
@@ -177,7 +184,7 @@ module.exports = {
   
     setTimeout(function() { toast.className = 'toast show ' + className; }, 50);
     setTimeout(function() { toast.className = 'toast gone ' + className; }, 5000);
-    setTimeout(function() { toast.remove(); }, 6000);
+    setTimeout(function() { try { toast.remove(); } catch(ex) {} }, 6000);
   },
 
   success: function(msg) {
