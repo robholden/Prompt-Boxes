@@ -1,6 +1,6 @@
 {
   "name": "prompt-boxes",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Plugin for toast messages, prompts and confirmation dialogs.",
   "main": "index.js",
   "scripts": {
