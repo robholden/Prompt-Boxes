@@ -1,11 +1,8 @@
 {
   "name": "prompt-boxes",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Plugin for toast messages, prompts and confirmation dialogs.",
-  "main": "index.js",
-  "scripts": {
-    "compile": "browserify --debug main.js -o bundle.js"
-  },
+  "main": "prompt-boxes.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/robholden/Prompt-Boxes.git"
