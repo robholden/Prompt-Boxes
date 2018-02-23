@@ -18,7 +18,7 @@
   
   <script src="prompt-boxes.js"></script>
   <script>
-    var pb = new PromptBoxes();
+    var pb = new PromptBoxes({ max: 5, promptAsAbsolute: true });
 
     document.getElementById('pb-toast-success').onclick = function() {
       pb.success('This is an example success toast');

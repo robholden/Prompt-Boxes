@@ -9,7 +9,7 @@ A small package I created for my own project so currently there's limited functi
 
 ## Usage
 ~~~
-var pb = new PromptBoxes();
+var pb = new PromptBoxes({ max: 5, promptAsAbsolute: true });
 
 document.getElementById('pb-toast-success').onclick = function() {
   pb.success('This is an example success toast');
@@ -170,6 +170,10 @@ body {
   border-bottom: 4px solid $grey;
 
   z-index: 9999;
+
+  &.absolute {
+    margin-top: 25%;
+  }
 
   p {
     font-size: 1.05em;

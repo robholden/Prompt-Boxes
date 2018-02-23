@@ -9,7 +9,8 @@
     }
 
     var defaultOptions = {
-      max: 5
+      max: 5,
+      promptAsAbsolute: false
     }
     this.options = this.extend(options, defaultOptions)
   }
@@ -126,6 +127,8 @@
     },
     
     prompt: function(callback, msg, type, submit, no) {
+      var that = this;
+
       if (!msg) msg = 'Are you sure?';
       if (!type) type = 'text';
       if (!submit) submit = 'Submit';
@@ -133,6 +136,7 @@
 
       this.rmBackDrop();
 
+      var baseClass = that.options.promptAsAbsolute === true ? 'absolute' : '';
       var sc_backdrop = document.createElement('div');
       var sc_confirm = document.createElement('div');
       var sc_confirm_input = document.createElement('input');
@@ -147,15 +151,21 @@
 
       sc_backdrop.id = 'sc-backdrop';
       sc_confirm.id = 'sc-confirm';
+      sc_confirm.className = baseClass;
       sc_confirm_input.id = 'sc-confirm-input';
       sc_confirm_yes.id = 'sc-confirm-yes';
+      sc_confirm_yes.setAttribute('disabled', 'disabled');
       sc_confirm_no.id = 'sc-confirm-no';
 
-      sc_confirm_yes.setAttribute('disabled', 'disabled');
+      if (that.options.promptAsAbsolute === true) {
+        var doc = document.documentElement;
+        var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+        sc_confirm.style.top = top + 'px';
+      }
 
       var destroy = function (outcome) {
         sc_backdrop.className = '';
-        sc_confirm.className = 'prompt';
+        sc_confirm.className = baseClass;
 
         callback(outcome || false);
 
@@ -176,6 +186,7 @@
 
         destroy(val);
       }
+
       sc_confirm_input.onkeyup = function(ev) {
         var val = sc_confirm_input.value;
         if (val === '') {
@@ -189,6 +200,7 @@
 
         destroy(val);
       }
+
       sc_confirm_no.onclick = function() { destroy(); }
 
       sc_confirm.appendChild(sc_confirm_msg);
@@ -206,7 +218,7 @@
       setTimeout(function() {
         sc_confirm_input.focus();
         sc_backdrop.className = 'show';
-        sc_confirm.className = 'prompt show';
+        sc_confirm.className = baseClass + ' show';
       }, 50);
     },
 

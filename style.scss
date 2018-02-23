@@ -98,7 +98,7 @@ body {
 }
 
 #sc-confirm {
-  display: inline;
+  display: inline-block;
   position: fixed;
   top: 35%;
   left: 0;
@@ -118,6 +118,10 @@ body {
   border-bottom: 4px solid $grey;
 
   z-index: 9999;
+
+  &.absolute {
+    margin-top: 25%;
+  }  
 
   p {
     font-size: 1.05em;
