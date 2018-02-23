@@ -59,8 +59,8 @@
  
     rmBackDrop: function () {
       try {
-        var oldC = document.getElementById("sc-confirm");
-        var oldB = document.getElementById("sc-backdrop");
+        var oldC = document.getElementById('sc-confirm');
+        var oldB = document.getElementById('sc-backdrop');
         if (oldC) oldC.remove();
         if (oldB) oldB.remove();
       } catch(ex) {}
@@ -83,10 +83,10 @@
       sc_confirm_no.innerHTML = no;
       sc_confirm_yes.innerHTML = yes;
 
-      sc_backdrop.id = "sc-backdrop";
-      sc_confirm.id = "sc-confirm";
-      sc_confirm_yes.id = "sc-confirm-yes";
-      sc_confirm_no.id = "sc-confirm-no";
+      sc_backdrop.id = 'sc-backdrop';
+      sc_confirm.id = 'sc-confirm';
+      sc_confirm_yes.id = 'sc-confirm-yes';
+      sc_confirm_no.id = 'sc-confirm-no';
 
       var destroy = function(outcome) {
         sc_backdrop.className = '';
@@ -145,17 +145,17 @@
       sc_confirm_no.innerHTML = no;
       sc_confirm_yes.innerHTML = submit;
 
-      sc_backdrop.id = "sc-backdrop";
-      sc_confirm.id = "sc-confirm";
-      sc_confirm_input.id = "sc-confirm-input";
-      sc_confirm_yes.id = "sc-confirm-yes";
-      sc_confirm_no.id = "sc-confirm-no";
+      sc_backdrop.id = 'sc-backdrop';
+      sc_confirm.id = 'sc-confirm';
+      sc_confirm_input.id = 'sc-confirm-input';
+      sc_confirm_yes.id = 'sc-confirm-yes';
+      sc_confirm_no.id = 'sc-confirm-no';
 
-      sc_confirm_yes.setAttribute("disabled", "disabled");
+      sc_confirm_yes.setAttribute('disabled', 'disabled');
 
       var destroy = function (outcome) {
         sc_backdrop.className = '';
-        sc_confirm.className = '';
+        sc_confirm.className = 'prompt';
 
         callback(outcome || false);
 
@@ -179,10 +179,10 @@
       sc_confirm_input.onkeyup = function(ev) {
         var val = sc_confirm_input.value;
         if (val === '') {
-          sc_confirm_yes.setAttribute("disabled", "disabled");
+          sc_confirm_yes.setAttribute('disabled', 'disabled');
           return;
         }
-        sc_confirm_yes.removeAttribute("disabled");
+        sc_confirm_yes.removeAttribute('disabled');
         
         if (ev.keyCode !== 13)
           return;
@@ -206,7 +206,7 @@
       setTimeout(function() {
         sc_confirm_input.focus();
         sc_backdrop.className = 'show';
-        sc_confirm.className = 'show';
+        sc_confirm.className = 'prompt show';
       }, 50);
     },
 
