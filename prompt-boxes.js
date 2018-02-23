@@ -160,6 +160,7 @@
       if (that.options.promptAsAbsolute === true) {
         var doc = document.documentElement;
         var top = (window.pageYOffset || doc.scrollTop)  - (doc.clientTop || 0);
+        sc_confirm.style.position = 'absolute';
         sc_confirm.style.top = top + 'px';
       }
 
