@@ -1,6 +1,9 @@
 # Prompt-Boxes
 A small package I created for my own project so currently there's limited functionality. I will update it as and when I require more functionality (or a request is made).
 
+## Demo
+You find a demo [here](https://iamrobert.co.uk/projects/prompt-boxes)
+
 ## Installation
 ``npm install prompt-boxes --save``
 
