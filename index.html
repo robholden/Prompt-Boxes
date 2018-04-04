@@ -18,7 +18,11 @@
   
   <script src="prompt-boxes.js"></script>
   <script>
-    var pb = new PromptBoxes({ max: 5, promptAsAbsolute: true });
+    var pb = new PromptBoxes({
+      toastDir: 'top',        // What position to show the toast (top | bottom)
+      toastMax: 5,            // Max number of toasts to display at once
+      promptAsAbsolute: true  // Whether to show prompt as position absolute (fixes ios input bug)
+    });
 
     document.getElementById('pb-toast-success').onclick = function() {
       pb.success('This is an example success toast');

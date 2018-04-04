@@ -2,7 +2,7 @@
 A small package I created for my own project so currently there's limited functionality. I will update it as and when I require more functionality (or a request is made).
 
 ## Demo
-You find a demo [here](https://iamrobert.co.uk/projects/prompt-boxes)
+You find a live demo [here](https://iamrobert.co.uk/projects/prompt-boxes)
 
 ## Installation
 ``npm install prompt-boxes --save``
@@ -12,7 +12,11 @@ You find a demo [here](https://iamrobert.co.uk/projects/prompt-boxes)
 
 ## Usage
 ~~~
-var pb = new PromptBoxes({ max: 5, promptAsAbsolute: true });
+var pb = new PromptBoxes({ 
+  toastDir: 'top',        // What position to show the toast (top | bottom)
+  toastMax: 5,            // Max number of toasts to display at once
+  promptAsAbsolute: true  // Whether to show prompt as position absolute (fixes ios input bug)
+});
 
 document.getElementById('pb-toast-success').onclick = function() {
   pb.success('This is an example success toast');

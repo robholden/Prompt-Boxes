@@ -9,7 +9,8 @@
     }
 
     var defaultOptions = {
-      max: 5,
+      toastDir: 'top',
+      toastMax: 5,
       promptAsAbsolute: false
     }
     this.options = this.extend(options, defaultOptions)
@@ -239,9 +240,9 @@
       for (var i = 0; i < curr.length; i++) {
         var el = document.getElementById(curr[(curr.length - 1) - i].id);
     
-        if ((i + 1) < this.options.max) {
+        if ((i + 1) < this.options.toastMax) {
           h += (el.clientHeight + 10);
-          el.style.marginTop = h + 'px';
+          if (this.options.toastDir === 'bottom') el.style.marginBottom = h + 'px'; else el.style.marginTop = h + 'px';
         } else {
           el.className = 'toast gone ' + className;
         }
