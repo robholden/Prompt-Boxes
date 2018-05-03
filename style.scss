@@ -159,6 +159,7 @@ body {
     font-size: 0.9em;
 
     &:first-of-type {
+      background: $light-grey;
       color: $red;
       border: none;
       border-bottom: 2px solid $red;
@@ -184,6 +185,19 @@ body {
         border-color: $grey;
         color: $dark-grey;
         cursor: not-allowed;
+      }
+    }
+
+    
+    &:only-of-type {
+      float: none;
+      background: $light-grey;
+      color: $black;
+      border: none;
+
+      &:hover {
+        background: $grey;
+        color: $black;
       }
     }
   }

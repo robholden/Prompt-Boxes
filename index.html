@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,14 +9,16 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Prompt Boxes</title>
 </head>
+
 <body>
   <button id="pb-toast-success">Success</button>
   <button id="pb-toast-error">Error</button>
   <button id="pb-toast-info">Info</button>
+  <button id="pb-alert">Alert</button>
   <button id="pb-confirm">Confirm</button>
   <button id="pb-prompt">Prompt</button>
   <button id="pb-clear">Clear</button>
-  
+
   <script src="prompt-boxes.js"></script>
   <script>
     var pb = new PromptBoxes({
@@ -24,30 +27,40 @@
       promptAsAbsolute: true  // Whether to show prompt as position absolute (fixes ios input bug)
     });
 
-    document.getElementById('pb-toast-success').onclick = function() {
+    document.getElementById('pb-toast-success').onclick = function () {
       pb.success('This is an example success toast');
     }
 
-    document.getElementById('pb-toast-error').onclick = function() {
+    document.getElementById('pb-toast-error').onclick = function () {
       pb.error('This is an example error toast');
     }
 
-    document.getElementById('pb-toast-info').onclick = function() {
+    document.getElementById('pb-toast-info').onclick = function () {
       pb.info('This is an example info toast');
     }
 
-    document.getElementById('pb-confirm').onclick = function() {
+    document.getElementById('pb-alert').onclick = function () {
+      pb.alert(
+        function (confirmed) {
+          alert('You have: ' + (confirmed ? 'confirmed' : 'cancelled'))
+        },
+        'This is an example alert',
+        'Ok'
+      );
+    }
+
+    document.getElementById('pb-confirm').onclick = function () {
       pb.confirm(
-        function(outcome) { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback
+        function (outcome) { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback
         'This is an example confirm', // Label text
         'Yes',                        // Confirm text
         'No'                          // Cancel text
       );
     }
 
-    document.getElementById('pb-prompt').onclick = function() {
+    document.getElementById('pb-prompt').onclick = function () {
       pb.prompt(
-        function(value) { alert('You have: ' + (value ? 'entered ' + value : 'cancelled')) }, // Callback
+        function (value) { alert('You have: ' + (value ? 'entered ' + value : 'cancelled')) }, // Callback
         'This is an example prompt',  // Label text
         'text',                       // Input type
         'Submit',                     // Submit text
@@ -55,9 +68,10 @@
       );
     }
 
-    document.getElementById('pb-clear').onclick = function() {
+    document.getElementById('pb-clear').onclick = function () {
       pb.clear();
     }
   </script>
 </body>
+
 </html>

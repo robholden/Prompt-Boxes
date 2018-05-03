@@ -30,6 +30,16 @@ document.getElementById('pb-toast-info').onclick = function() {
   pb.info('This is an example info toast');
 }
 
+document.getElementById('pb-alert').onclick = function () {
+  pb.alert(
+    function (confirmed) {
+      alert('You have: ' + (confirmed ? 'confirmed' : 'cancelled'))
+    },
+    'This is an example alert',
+    'Ok'
+  );
+}
+
 document.getElementById('pb-confirm').onclick = function() {
   pb.confirm(
     function(outcome) { alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')) }, // Callback
@@ -157,7 +167,7 @@ body {
 }
 
 #sc-confirm {
-  display: inline;
+  display: inline-block;
   position: fixed;
   top: 35%;
   left: 0;
@@ -180,7 +190,7 @@ body {
 
   &.absolute {
     margin-top: 25%;
-  }
+  }  
 
   p {
     font-size: 1.05em;
@@ -218,6 +228,7 @@ body {
     font-size: 0.9em;
 
     &:first-of-type {
+      background: $light-grey;
       color: $red;
       border: none;
       border-bottom: 2px solid $red;
@@ -243,6 +254,19 @@ body {
         border-color: $grey;
         color: $dark-grey;
         cursor: not-allowed;
+      }
+    }
+
+    
+    &:only-of-type {
+      float: none;
+      background: $light-grey;
+      color: $black;
+      border: none;
+
+      &:hover {
+        background: $grey;
+        color: $black;
       }
     }
   }
