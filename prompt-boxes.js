@@ -11,7 +11,8 @@
     var defaultOptions = {
       toastDir: 'top',
       toastMax: 5,
-      promptAsAbsolute: false
+      promptAsAbsolute: false,
+      animationSpeed: 500
     }
     this.options = this.extend(options, defaultOptions)
   }
@@ -27,6 +28,7 @@
     },
 
     clear: function () {
+      var that = this;
 
       // Remove toasts
       var toasts = document.getElementsByClassName('toast');
@@ -42,7 +44,7 @@
           try {
             sc_confirm.remove();
           } catch (ex) { }
-        }, 1000);
+        }, that.options.animationSpeed);
       }
 
       // Remove backdrop
@@ -54,15 +56,16 @@
             sc_backdrop.remove();
             sc_confirm.remove();
           } catch (ex) { }
-        }, 1000);
+        }, that.options.animationSpeed);
       }
 
     },
 
-    rmBackDrop: function () {
+    rmBackDrop: function (instance) {
       try {
-        var oldC = document.getElementById('sc-confirm');
-        var oldB = document.getElementById('sc-backdrop');
+        var oldC = document.querySelector('#sc-confirm' + (instance ? '[data-instance="' + instance + '"]' : ''));
+        var oldB = document.querySelector('#sc-backdrop' + (instance ? '[data-instance="' + instance + '"]' : ''));
+
         if (oldC) oldC.remove();
         if (oldB) oldB.remove();
 
@@ -78,15 +81,20 @@
 
       var sc_backdrop = document.createElement('div');
       var sc_confirm = document.createElement('div');
-      var sc_confirm_msg = document.createElement('p');
+      var sc_confirm_msg = document.createElement('div');
       var sc_confirm_ok = document.createElement('button');
 
       sc_confirm_msg.innerHTML = msg;
       sc_confirm_ok.innerHTML = ok;
 
+      sc_confirm_msg.className = 'sc-message';
       sc_backdrop.id = 'sc-backdrop';
       sc_confirm.id = 'sc-confirm';
       sc_confirm_ok.id = 'sc-confirm-ok';
+
+      var instance = (new Date).toISOString();
+      sc_confirm.setAttribute('data-instance', instance);
+      sc_backdrop.setAttribute('data-instance', instance);
 
       var that = this;
       var destroy = function (outcome) {
@@ -94,7 +102,7 @@
         sc_confirm.className = '';
 
         callback(outcome || false);
-        setTimeout(function () { that.rmBackDrop(); }, 1000);
+        setTimeout(function () { that.rmBackDrop(instance); }, that.options.animationSpeed);
       };
 
       sc_confirm_ok.onclick = function () {
@@ -127,7 +135,7 @@
 
       var sc_backdrop = document.createElement('div');
       var sc_confirm = document.createElement('div');
-      var sc_confirm_msg = document.createElement('p');
+      var sc_confirm_msg = document.createElement('div');
       var sc_confirm_yes = document.createElement('button');
       var sc_confirm_no = document.createElement('button');
 
@@ -135,10 +143,15 @@
       sc_confirm_no.innerHTML = no;
       sc_confirm_yes.innerHTML = yes;
 
+      sc_confirm_msg.classList = 'sc-message';
       sc_backdrop.id = 'sc-backdrop';
       sc_confirm.id = 'sc-confirm';
       sc_confirm_yes.id = 'sc-confirm-yes';
       sc_confirm_no.id = 'sc-confirm-no';
+
+      var instance = (new Date).toISOString();
+      sc_confirm.setAttribute('data-instance', instance);
+      sc_backdrop.setAttribute('data-instance', instance);
 
       var that = this;
       var destroy = function (outcome) {
@@ -146,7 +159,7 @@
         sc_confirm.className = '';
 
         callback(outcome || false);
-        setTimeout(function () { that.rmBackDrop(); }, 1000);
+        setTimeout(function () { that.rmBackDrop(instance); }, that.options.animationSpeed);
       };
 
       sc_confirm_yes.onclick = function () {
@@ -186,7 +199,7 @@
       var sc_backdrop = document.createElement('div');
       var sc_confirm = document.createElement('div');
       var sc_confirm_input = document.createElement('input');
-      var sc_confirm_msg = document.createElement('p');
+      var sc_confirm_msg = document.createElement('div');
       var sc_confirm_yes = document.createElement('button');
       var sc_confirm_no = document.createElement('button');
 
@@ -195,6 +208,7 @@
       sc_confirm_no.innerHTML = no;
       sc_confirm_yes.innerHTML = submit;
 
+      sc_confirm_msg.classList = 'sc-message';
       sc_backdrop.id = 'sc-backdrop';
       sc_confirm.id = 'sc-confirm';
       sc_confirm.className = baseClass;
@@ -202,6 +216,10 @@
       sc_confirm_yes.id = 'sc-confirm-yes';
       sc_confirm_yes.setAttribute('disabled', 'disabled');
       sc_confirm_no.id = 'sc-confirm-no';
+
+      var instance = (new Date).toISOString();
+      sc_confirm.setAttribute('data-instance', instance);
+      sc_backdrop.setAttribute('data-instance', instance);
 
       if (that.options.promptAsAbsolute === true) {
         var doc = document.documentElement;
@@ -216,7 +234,7 @@
         sc_confirm.className = baseClass;
 
         callback(outcome || false);
-        setTimeout(function () { that.rmBackDrop(); }, 1000);
+        setTimeout(function () { that.rmBackDrop(instance); }, that.options.animationSpeed);
       };
 
       sc_confirm_yes.onclick = function () {

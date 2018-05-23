@@ -68,7 +68,7 @@ body {
 #sc-confirm {
   display: inline-block;
   position: fixed;
-  top: 35%;
+  top: 40vh;
   left: 0;
   right: 0;
   max-width: 375px;
@@ -83,9 +83,9 @@ body {
   z-index: 9999;
 }
 #sc-confirm.absolute {
-  margin-top: 25%;
+  margin-top: 40vh;
 }
-#sc-confirm p {
+#sc-confirm .sc-message {
   font-size: 1.05em;
   margin: 0 0 0.75em;
 }
