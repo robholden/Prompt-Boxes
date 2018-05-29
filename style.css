@@ -19,7 +19,10 @@ body {
   display: inline-block;
   position: fixed;
   top: 0.25em;
+  left: 0;
+  right: 0;
   transform: scale(0);
+  width: 400px;
   margin-right: auto;
   margin-left: auto;
   padding: 1em;
@@ -27,7 +30,6 @@ body {
   border-radius: 2px;
   text-align: center;
   z-index: 9999;
-  min-width: 400px;
 }
 .toast.success {
   background: #4591bf;

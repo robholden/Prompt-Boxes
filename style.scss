@@ -41,9 +41,10 @@ body {
   display: inline-block;
   position: fixed;
   top: 0.25em;
+  left: 0;
+  right: 0;
   transform: scale(0);
-  min-width: 400px;
-
+  width: 400px;
   margin: {
     right: auto;
     left: auto;
