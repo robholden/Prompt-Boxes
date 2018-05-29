@@ -14,6 +14,7 @@
   <button id="pb-toast-success">Success</button>
   <button id="pb-toast-error">Error</button>
   <button id="pb-toast-info">Info</button>
+  <button id="pb-toast-close">Permanent Toast</button>
   <button id="pb-alert">Alert</button>
   <button id="pb-confirm">Confirm</button>
   <button id="pb-prompt">Prompt</button>
@@ -24,8 +25,15 @@
     var pb = new PromptBoxes({
       toastDir: 'top',        // What position to show the toast (top | bottom)
       toastMax: 5,            // Max number of toasts to display at once
-      promptAsAbsolute: true  // Whether to show prompt as position absolute (fixes ios input bug)
+      toastDuration: 5000,    // The duration is milliseconds to show a toast. 0 = never
+      toastClose: false,      // Whather to add a close icon to manually close a toast
+      promptAsAbsolute: true, // Whether to show prompt as position absolute (fixes ios input bug)
+      animationSpeed: 500     // The speed of your animation
     });
+
+    document.getElementById('pb-toast-close').onclick = function () {
+      pb.success('This is a permanent toast with a close option', { duration: 0, showClose: true });
+    }
 
     document.getElementById('pb-toast-success').onclick = function () {
       pb.success('This is an example success toast');

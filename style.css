@@ -16,12 +16,9 @@ body {
 
 /** Toast styles **/
 .toast {
-  display: inline;
+  display: inline-block;
   position: fixed;
   top: 0.25em;
-  left: 0;
-  right: 0;
-  max-width: 400px;
   transform: scale(0);
   margin-right: auto;
   margin-left: auto;
@@ -30,6 +27,7 @@ body {
   border-radius: 2px;
   text-align: center;
   z-index: 9999;
+  min-width: 400px;
 }
 .toast.success {
   background: #4591bf;
@@ -49,6 +47,18 @@ body {
 }
 .toast.gone {
   transform: scale(0);
+}
+.toast[data-close="true"] {
+  padding-right: 3em;
+}
+.toast .toast-close {
+  position: absolute;
+  right: 0.75em;
+  top: 50%;
+  margin-top: -13.5px;
+  text-decoration: none;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 #sc-backdrop {
@@ -135,22 +145,22 @@ body {
 #sc-confirm button:last-of-type:hover {
   background: #366988;
 }
-#sc-confirm button:only-of-type {
-  float: none;
-  background: #EEE;
-  color: #000;
-  border: none;
-}
-#sc-confirm button:only-of-type:hover {
-  background: #CCC;
-  color: #000;
-}
 #sc-confirm button:last-of-type[disabled] {
   opacity: 0.5;
   background: none;
   border-color: #CCC;
   color: #999;
   cursor: not-allowed;
+}
+#sc-confirm button:only-of-type {
+  float: none;
+  background: #EEE;
+  color: #252525;
+  border: none;
+}
+#sc-confirm button:only-of-type:hover {
+  background: #CCC;
+  color: #252525;
 }
 #sc-confirm.show {
   transform: scale(1);

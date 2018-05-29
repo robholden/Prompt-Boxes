@@ -38,18 +38,17 @@ body {
 
 /** Toast styles **/
 .toast {
-  display: inline;
+  display: inline-block;
   position: fixed;
   top: 0.25em;
-  left: 0;
-  right: 0;
-  max-width: 400px;
   transform: scale(0);
+  min-width: 400px;
 
   margin: {
     right: auto;
     left: auto;
   }
+
   padding: 1em;
   color: $white;
   border-radius: $br;
@@ -67,11 +66,11 @@ body {
     border-bottom: 4px solid $dark-red;
   }
   
-    &.info {
-      color: $black;
-      background: $light-grey;
-      border-bottom: 4px solid $grey;
-    }
+  &.info {
+    color: $black;
+    background: $light-grey;
+    border-bottom: 4px solid $grey;
+  }
 
   &.show {
     transform: scale(1);
@@ -79,6 +78,20 @@ body {
 
   &.gone {
     transform: scale(0);
+  }
+  
+  &[data-close="true"] {
+    padding-right: 3em;
+  }
+
+  .toast-close {
+    position: absolute;;
+    right: 0.75em;
+    top: 50%;
+    margin-top: -13.5px;
+    text-decoration: none;
+    font-size: 24px;
+    color: rgba(0, 0, 0, 0.5);
   }
 }
 

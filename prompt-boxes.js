@@ -11,6 +11,8 @@
     var defaultOptions = {
       toastDir: 'top',
       toastMax: 5,
+      toastDuration: 5000,
+      toastClose: false,
       promptAsAbsolute: false,
       animationSpeed: 500
     }
@@ -282,17 +284,39 @@
       }, 50);
     },
 
-    show: function (msg, state) {
-      var className = state ? 'success' : (state === false ? 'error' : 'info');
+    toast: function (msg, state, opts) {
+      var className = state || 'info';
       var curr = document.getElementsByClassName('toast');
       var toast = document.createElement('div');
       var t = document.createTextNode(msg);
+
+      var defaultOps = {
+        duration: this.options.toastDuration,
+        showClose: this.options.toastClose
+      }
+      var options = this.extend(opts, defaultOps)
 
       toast.appendChild(t);
       toast.className = className;
 
       toast.id = 'toast_' + (new Date).toISOString();
       toast.className = 'toast';
+
+      var that = this;
+      var close = function () {
+        toast.className = 'toast gone ' + className;
+        setTimeout(function () { try { toast.remove(); } catch (ex) { } }, options.duration + that.options.animationSpeed);
+      }
+
+      if (options.showClose) {
+        var closeBtn = document.createElement('a');
+        closeBtn.href = "javascript:void(0)";
+        closeBtn.innerHTML = '&times;';
+        closeBtn.className = 'toast-close';
+        closeBtn.onclick = function () { close() };
+        toast.appendChild(closeBtn);
+        toast.setAttribute('data-close', true);
+      }
 
       var h = 0;
       for (var i = 0; i < curr.length; i++) {
@@ -309,20 +333,21 @@
       document.getElementsByTagName('body')[0].appendChild(toast);
 
       setTimeout(function () { toast.className = 'toast show ' + className; }, 50);
-      setTimeout(function () { toast.className = 'toast gone ' + className; }, 5000);
-      setTimeout(function () { try { toast.remove(); } catch (ex) { } }, 6000);
+      if (options.duration) {
+        setTimeout(function () { close(); }, options.duration);
+      }
     },
 
-    success: function (msg) {
-      this.show(msg, true);
+    success: function (msg, opts) {
+      this.toast(msg, 'success', opts);
     },
 
-    error: function (msg) {
-      this.show(msg, false);
+    error: function (msg, opts) {
+      this.toast(msg, 'error', opts);
     },
 
-    info: function (msg) {
-      this.show(msg);
+    info: function (msg, opts) {
+      this.toast(msg, 'info', opts);
     }
   }
   return PromptBoxes
