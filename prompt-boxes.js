@@ -284,9 +284,11 @@
       }, 50);
     },
 
+    toastQueue: [],
+
     toast: function (msg, state, opts) {
+      var that = this;
       var className = state || 'info';
-      var curr = document.getElementsByClassName('toast');
       var toast = document.createElement('div');
       var t = document.createTextNode(msg);
 
@@ -299,43 +301,105 @@
       toast.appendChild(t);
       toast.className = className;
 
-      toast.id = 'toast_' + (new Date).toISOString();
+      toast.id = 'toast_' + (new Date).toISOString() + '_' + this.toastQueue.length + '_' + Math.random();
       toast.className = 'toast';
-
-      var that = this;
-      var close = function () {
-        toast.className = 'toast gone ' + className;
-        setTimeout(function () { try { toast.remove(); } catch (ex) { } }, options.duration + that.options.animationSpeed);
-      }
 
       if (options.showClose) {
         var closeBtn = document.createElement('a');
         closeBtn.href = "javascript:void(0)";
         closeBtn.innerHTML = '&times;';
         closeBtn.className = 'toast-close';
-        closeBtn.onclick = function () { close() };
+        closeBtn.onclick = function () {
+          that.removeToast(toast, className);
+          that.displayToasts();
+        };
         toast.appendChild(closeBtn);
         toast.setAttribute('data-close', true);
       }
 
-      var h = 0;
-      for (var i = 0; i < curr.length; i++) {
-        var el = document.getElementById(curr[(curr.length - 1) - i].id);
+      document.getElementsByTagName('body')[0].appendChild(toast);
 
-        if ((i + 1) < this.options.toastMax) {
-          h += (el.clientHeight + 10);
-          if (this.options.toastDir === 'bottom') el.style.marginBottom = h + 'px'; else el.style.marginTop = h + 'px';
-        } else {
-          el.className = 'toast gone ' + className;
+      that.addToast(toast, className);
+      that.displayToasts();
+      // setTimeout(function () { that.displayToasts(); }, this.options.animationSpeed);
+
+      if (options.duration) {
+        setTimeout(function () {
+          that.removeToast(toast, className);
+          that.displayToasts();
+        }, options.duration);
+      }
+    },
+
+    addToast: function (el, className) {
+      if (this.toastQueue.length >= this.options.toastMax) {
+        this.toastQueue.splice(this.options.toastMax - 1, (this.toastQueue.length - (this.options.toastMax - 1)));
+      }
+
+      this.toastQueue.unshift({ id: el.id, className: className });
+
+      setTimeout(function () {
+        el.className = 'toast show ' + className;
+      }, 50);
+    },
+
+    removeToast: function (el, className) {
+      for (var i = 0; i < this.toastQueue.length; i++) {
+        if (this.toastQueue[i].id === el.id) {
+          this.toastQueue.splice(i, 1);
+          break;
+        }
+      }
+    },
+
+    displayToasts: function (options) {
+
+      // Method that physically removes elements from the screen
+      var that = this;
+      var destroyToast = function (el) {
+        el.className = 'gone ' + el.className;
+        setTimeout(function () {
+          try { el.remove(); } catch (ex) { }
+        }, that.options.animationSpeed);
+      };
+
+      // Get current element list from dom
+      var toastList = document.getElementsByClassName('toast');
+
+      // Loop through current queue and remove any elements that are no longer present
+      for (var i = 0; i < toastList.length; i++) {
+        var tId = toastList[i].id;
+        var exists = false;
+        for (var j = 0; j < this.toastQueue.length; j++) {
+          if (tId === this.toastQueue[j].id) {
+            exists = true;
+          }
+        }
+        if (!exists) {
+          destroyToast(toastList[i]);
         }
       }
 
-      document.getElementsByTagName('body')[0].appendChild(toast);
+      // Calculate margin of toasts to show
+      var height = 0;
+      for (var i = 0; i < this.toastQueue.length; i++) {
+        height += 10;
 
-      setTimeout(function () { toast.className = 'toast show ' + className; }, 50);
-      if (options.duration) {
-        setTimeout(function () { close(); }, options.duration);
+        var el = document.getElementById(this.toastQueue[i].id);
+        if (!el) break;
+
+        if (i > 0) {
+          var prevEl = document.getElementById(this.toastQueue[i - 1].id);
+          if (prevEl) height += prevEl.clientHeight;
+        }
+
+        if (this.options.toastDir === 'bottom') {
+          el.style.marginBottom = height + 'px';
+        } else {
+          el.style.marginTop = height + 'px';
+        }
       }
+
     },
 
     success: function (msg, opts) {
