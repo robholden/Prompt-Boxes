@@ -41,6 +41,7 @@
         direction: 'top',       // Which direction to show the toast  'top' | 'bottom'
         max: 5,                 // The number of toasts that can be in the stack
         duration: 5000,         // The time the toast appears
+        showTimerBar: true,     // Show timer bar countdown
         closeWithEscape: true,  // Allow closing with escaping
         allowClose: false,      // Whether to show a "x" to close the toast
       }
@@ -70,7 +71,8 @@
       container: '',
       backdrop: '',
       message: '',
-      buttons: ''
+      buttons: '',
+      timerBar: ''
     },
 
     _destroyBase: function (elements) {
@@ -489,8 +491,25 @@
       that._addToast(base$, className, opts);
       that._displayToasts(opts);
 
-      // Await closing duration if set
+      // Set duration logic
       if (opts.duration) {
+        if (opts.showTimerBar) {
+          var timerBar$ = document.createElement('div');
+          timerBar$.style.position = 'absolute';
+          timerBar$.style.bottom = 0;
+          timerBar$.style.left = 0;
+          timerBar$.style.width = 0;
+          timerBar$.style.height = '4px';
+          timerBar$.style.background = 'rgba(0, 0, 0, 0.25)';
+          timerBar$.style.transition = 'width linear ' + opts.duration + 'ms';
+          timerBar$.className = that._prefixes.timerBar;
+          base$.appendChild(timerBar$);
+        }
+
+        // Add timer countdown
+        setTimeout(function () { timerBar$.style.width = '100%' }, 50);
+        
+        // Hide toast once completed time
         setTimeout(function () {
           that._removeToast(base$);
           that._displayToasts(opts);

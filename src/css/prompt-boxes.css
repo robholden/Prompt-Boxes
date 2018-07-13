@@ -52,7 +52,7 @@ body {
   padding: 1em;
   border-radius: 2px;
   background: #FFF;
-  border-bottom: 4px solid #CCC;
+  border-bottborder-bottom: 4px solid #CCC;
   z-index: 99; }
   #pb-container.absolute {
     margin-top: 40vh; }
@@ -93,15 +93,12 @@ body {
   .pb-toast.bottom {
     bottom: 0.25em; }
   .pb-toast.success {
-    background: #4591bf;
-    border-bottom: 4px solid #366988; }
+    background: #4591bf; }
   .pb-toast.error {
-    background: #da4242;
-    border-bottom: 4px solid #af3535; }
+    background: #da4242; }
   .pb-toast.info {
     color: #252525;
-    background: #EEE;
-    border-bottom: 4px solid #CCC; }
+    background: #EEE; }
   .pb-toast.show {
     -webkit-transform: scale(1);
     -ms-transform: scale(1);

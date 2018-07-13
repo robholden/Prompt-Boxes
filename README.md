@@ -55,6 +55,7 @@ You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). 
       direction: 'top',       // Which direction to show the toast  'top' | 'bottom'
       max: 5,                 // The number of toasts that can be in the stack
       duration: 5000,         // The time the toast appears
+      showTimerBar: true,     // Show timer bar countdown
       closeWithEscape: true,  // Allow closing with escaping
       allowClose: false,      // Whether to show a "x" to close the toast
     }
@@ -67,8 +68,8 @@ You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). 
   pb.success(
     'This is a permanent toast with a close option',  // Message text
     { 
-      duration: 0,
-      allowClose: true 
+      duration: 0,      // Show permanently
+      allowClose: true  // Add manual close button
     }
   );
 ~~~
@@ -76,16 +77,16 @@ You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). 
 #### Success toast
 ~~~
 pb.success(
-  'This is an example success toast' // Message text
-  {}                              // Addition options
+  'This is an example success toast'  // Message text
+  {}                                  // Addition options
 );
 ~~~
 
 #### Error toast
 ~~~
 pb.error(
-  'This is an example error toast' // Message text
-  {}                              // Addition options
+  'This is an example error toast'    // Message text
+  {}                                  // Addition options
 );
 ~~~
 
