@@ -504,10 +504,10 @@
           timerBar$.style.transition = 'width linear ' + opts.duration + 'ms';
           timerBar$.className = that._prefixes.timerBar;
           base$.appendChild(timerBar$);
-        }
 
-        // Add timer countdown
-        setTimeout(function () { timerBar$.style.width = '100%' }, 50);
+          // Add timer countdown
+          setTimeout(function () { timerBar$.style.width = '100%' }, 50);
+        }
         
         // Hide toast once completed time
         setTimeout(function () {
