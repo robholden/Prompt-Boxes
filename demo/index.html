@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" type="text/css" href="../dist/prompt-boxes.min.css">
+  <title>Prompt Boxes</title>
+</head>
+
+<body>
+  <button id="pb-toast-success">Success</button>
+  <button id="pb-toast-error">Error</button>
+  <button id="pb-toast-info">Info</button>
+  <button id="pb-toast-close">Permanent Toast</button>
+  <button id="pb-alert">Alert</button>
+  <button id="pb-confirm">Confirm</button>
+  <button id="pb-prompt">Prompt</button>
+  <button id="pb-clear">Clear</button>
+
+  <script src="../dist/prompt-boxes-min.js"></script>
+  <script>
+    var pb = new PromptBoxes({
+      attrPrefix: 'pb',
+      speeds: {
+        backdrop: 250,  // The enter/leaving animation speed of the backdrop
+        toasts: 250     // The enter/leaving animation speed of the toast
+      },
+      alert: {
+        okText: 'Ok',           // The text for the ok button
+        okClass: '',            // A class for the ok button
+        closeWithEscape: false, // Allow closing with escaping
+        absolute: false         // Show prompt popup as absolute
+      },
+      confirm: {
+        confirmText: 'Confirm', // The text for the confirm button
+        confirmClass: '',       // A class for the confirm button
+        cancelText: 'Cancel',   // The text for the cancel button
+        cancelClass: '',        // A class for the cancel button
+        closeWithEscape: true,  // Allow closing with escaping
+        absolute: false         // Show prompt popup as absolute
+      },
+      prompt: {
+        inputType: 'text',      // The type of input 'text' | 'password' etc.
+        submitText: 'Submit',   // The text for the submit button
+        submitClass: '',        // A class for the submit button
+        cancelText: 'Cancel',   // The text for the cancel button
+        cancelClass: '',        // A class for the cancel button
+        closeWithEscape: true,  // Allow closing with escaping
+        absolute: false         // Show prompt popup as absolute
+      },
+      toasts: {
+        direction: 'top',       // Which direction to show the toast  'top' | 'bottom'
+        max: 5,                 // The number of toasts that can be in the stack
+        duration: 5000,         // The time the toast appears
+        closeWithEscape: true,  // Allow closing with escaping
+        allowClose: false,      // Whether to show a "x" to close the toast
+      }
+    });
+
+    document.getElementById('pb-toast-close').onclick = function () {
+      pb.success('This is a permanent toast with a close option', { duration: 0, allowClose: true });
+    }
+
+    document.getElementById('pb-toast-success').onclick = function () {
+      pb.success('This is an example success toast');
+    }
+
+    document.getElementById('pb-toast-error').onclick = function () {
+      pb.error('This is an example error toast');
+    }
+
+    document.getElementById('pb-toast-info').onclick = function () {
+      pb.info('This is an example info toast');
+    }
+
+    document.getElementById('pb-alert').onclick = function () {
+      pb.alert(
+        function (confirmed) {
+          alert('You have: ' + (confirmed ? 'confirmed' : 'cancelled'));
+        },
+        'This is an example alert',
+        'Ok'
+      );
+    }
+
+    document.getElementById('pb-confirm').onclick = function () {
+      pb.confirm(
+        function (outcome) { 
+          alert('You have: ' + (outcome ? 'confirmed' : 'cancelled'));
+        },
+        'This is an example confirm',
+        'Yes',
+        'No'
+      );
+    }
+
+    document.getElementById('pb-prompt').onclick = function () {
+      pb.prompt(
+        function (value) { 
+          alert('You have: ' + (value ? 'entered ' + value : 'cancelled')); 
+        },
+        'This is an example prompt', 
+        'password',
+        'Submit',
+        'Cancel'
+      );
+    }
+
+    document.getElementById('pb-clear').onclick = function () {
+      pb.clear();
+    }
+  </script>
+</body>
+
+</html>

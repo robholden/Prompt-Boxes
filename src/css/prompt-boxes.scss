@@ -28,7 +28,7 @@ body {
   box-sizing: border-box;
 }
 
-.toast, #sc-confirm, #sc-backdrop {
+#pb-container, .pb-backdrop {
   transition: ease 0.25s;
 
   a, button, input, textarea, select, div {
@@ -36,11 +36,78 @@ body {
   }
 }
 
-/** Toast styles **/
-.toast {
+.pb-toast {
+  transition: ease 0.25s;
+
+  a, button, input, textarea, select, div {
+    transition: ease 0.25s;
+  }
+}
+
+.pb-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 97;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.8);
+
+  &[data-show] {
+    opacity: 1;
+  }
+}
+
+#pb-container {
   display: inline-block;
   position: fixed;
-  top: 0.25em;
+  top: 40vh;
+  left: 0;
+  right: 0;
+  max-width: 375px;
+  transform: scale(0);
+
+  margin: {
+    top: -50px;
+    right: auto;
+    left: auto;
+  }
+  padding: 1em;
+  border-radius: $br;
+
+  background: $white;
+  border-bottom: 4px solid $grey;
+
+  z-index: 99;
+
+  &.absolute {
+    margin-top: 40vh;
+  }  
+
+  input {
+    display: block;
+    width: 100%;
+    padding: 0.5em;
+    margin-bottom: 1em;
+    border: 1px solid $light-grey;
+    font-size: 1em;
+    border-radius: $br;
+
+    &:focus, &:active {
+      outline: none;
+      border-color: $grey;
+    }
+  }
+
+  &[data-show] {
+    transform: scale(1);
+  }
+}
+
+.pb-toast {
+  display: inline-block;
+  position: fixed;
   left: 0;
   right: 0;
   transform: scale(0);
@@ -55,7 +122,15 @@ body {
   border-radius: $br;
   text-align: center;
 
-  z-index: 9999;
+  z-index: 98;
+
+  &.top {
+    top: 0.25em;
+  }
+
+  &.bottom {
+    bottom: 0.25em;
+  }
 
   &.success {
     background: $blue;
@@ -96,67 +171,12 @@ body {
   }
 }
 
-#sc-backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9998;
-  opacity: 0;
-  background: rgba(0, 0, 0, 0.8);
-
-  &.show {
-    opacity: 1;
-  }
+.pb-message {
+  font-size: 1.05em;
+  margin: 0 0 0.75em;
 }
 
-#sc-confirm {
-  display: inline-block;
-  position: fixed;
-  top: 40vh;
-  left: 0;
-  right: 0;
-  max-width: 375px;
-  transform: scale(0);
-
-  margin: {
-    top: -50px;
-    right: auto;
-    left: auto;
-  }
-  padding: 1em;
-  border-radius: $br;
-
-  background: $white;
-  border-bottom: 4px solid $grey;
-
-  z-index: 9999;
-
-  &.absolute {
-    margin-top: 40vh;
-  }  
-
-  .sc-message {
-    font-size: 1.05em;
-    margin: 0 0 0.75em;
-  }
-
-  input {
-    display: block;
-    width: 100%;
-    padding: 0.5em;
-    margin-bottom: 1em;
-    border: 1px solid $light-grey;
-    font-size: 1em;
-    border-radius: $br;
-
-    &:focus, &:active {
-      outline: none;
-      border-color: $grey;
-    }
-  }
-
+.pb-buttons {
   button {
     display: inline-block;
     background: transparent;
@@ -214,9 +234,5 @@ body {
         color: $black;
       }
     }
-  }
-
-  &.show {
-    transform: scale(1);
   }
 }
