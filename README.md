@@ -16,7 +16,7 @@ You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). 
 #### Add scripts
 ~~~
 <link rel="stylesheet" type="text/css" href="prompt-boxes.min.css">
-<script src="prompt-boxes-min.dist.js"></script>
+<script src="prompt-boxes.min.dist.js"></script>
 ~~~
 
 #### Create instance

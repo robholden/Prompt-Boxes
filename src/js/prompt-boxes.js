@@ -177,6 +177,7 @@
       if (opts.closeWithEscape) that._addEscapeEvent(complete);
 
       setTimeout(function () {
+        ok$.focus();
         backdrop$.setAttribute('data-show', 'true');
         base$.setAttribute('data-show', 'true');
       }, 50);
@@ -222,11 +223,11 @@
 
       // Buttons
       var buttons$ = document.createElement('div');
-      var confirm = document.createElement('button');
+      var confirm$ = document.createElement('button');
       var cancel$ = document.createElement('button');
       buttons$.className = that._prefixes.buttons;
-      confirm.className = opts.confirmClass;
-      confirm.innerHTML = opts.confirmText;
+      confirm$.className = opts.confirmClass;
+      confirm$.innerHTML = opts.confirmText;
       cancel$.className = opts.cancelClass;
       cancel$.innerHTML = opts.cancelText;
 
@@ -237,12 +238,12 @@
       };
 
       cancel$.onclick = function () { complete(); }
-      confirm.onclick = function () {
+      confirm$.onclick = function () {
         complete(true);
       }
 
       buttons$.appendChild(cancel$);
-      buttons$.appendChild(confirm);
+      buttons$.appendChild(confirm$);
       base$.appendChild(message$);
       base$.appendChild(buttons$);
 
@@ -252,6 +253,7 @@
       if (opts.closeWithEscape) that._addEscapeEvent(complete);
 
       setTimeout(function () {
+        confirm$.focus();
         backdrop$.setAttribute('data-show', 'true');
         base$.setAttribute('data-show', 'true');
       }, 50);

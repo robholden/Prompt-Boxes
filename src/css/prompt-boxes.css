@@ -127,44 +127,35 @@ body {
 
 .pb-buttons button {
   display: inline-block;
-  background: transparent;
+  background: #EEE;
   border-radius: 2px;
-  border: 1px solid #4591bf;
+  border: none;
   padding: 0.5em 1em;
-  color: #4591bf;
+  color: #222;
   font-size: 1em;
   outline: none;
   overflow: hidden;
   cursor: pointer;
-  background: #FFF;
   -webkit-box-shadow: none;
   box-shadow: none;
-  font-size: 0.9em; }
-  .pb-buttons button:first-of-type {
-    background: #EEE;
-    color: #da4242;
-    border: none;
-    border-bottom: 2px solid #da4242; }
-    .pb-buttons button:first-of-type:hover, .pb-buttons button:first-of-type.active {
-      background: #da4242;
-      color: #FFF; }
-  .pb-buttons button:last-of-type {
+  font-size: 14px; }
+  .pb-buttons button:focus {
+    -webkit-box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(0, 0, 0, 0.2); }
+  .pb-buttons button:hover {
+    background: #CCC; }
+  .pb-buttons button:not(:only-of-type):last-of-type {
     float: right;
     background: #4591bf;
     color: #FFF; }
-    .pb-buttons button:last-of-type:hover {
+    .pb-buttons button:not(:only-of-type):last-of-type:focus {
+      -webkit-box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(69, 145, 191, 0.5);
+      box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(69, 145, 191, 0.5); }
+    .pb-buttons button:not(:only-of-type):last-of-type:hover {
       background: #366988; }
-    .pb-buttons button:last-of-type[disabled] {
+    .pb-buttons button:not(:only-of-type):last-of-type[disabled] {
       opacity: 0.5;
       background: none;
       border-color: #CCC;
       color: #999;
       cursor: not-allowed; }
-  .pb-buttons button:only-of-type {
-    float: none;
-    background: #EEE;
-    color: #252525;
-    border: none; }
-    .pb-buttons button:only-of-type:hover {
-      background: #CCC;
-      color: #252525; }

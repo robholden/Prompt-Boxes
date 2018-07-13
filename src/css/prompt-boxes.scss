@@ -179,35 +179,34 @@ body {
 .pb-buttons {
   button {
     display: inline-block;
-    background: transparent;
+    background: $light-grey;
     border-radius: $br;
-    border: 1px solid $blue;
+    border: none;
     padding: 0.5em 1em;
-    color: $blue;
+    color: #222;
     font-size: 1em;
     outline: none;
     overflow: hidden;
     cursor: pointer;
-    background: $white;
     box-shadow: none;
-    font-size: 0.9em;
+    font-size: 14px;
 
-    &:first-of-type {
-      background: $light-grey;
-      color: $red;
-      border: none;
-      border-bottom: 2px solid $red;
-
-      &:hover, &.active {
-        background: $red;
-        color: $white;
-      }
+    &:focus {
+      box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(0, 0, 0, 0.2);
     }
 
-    &:last-of-type {
+    &:hover {
+      background: $grey;
+    }
+
+    &:not(:only-of-type):last-of-type {
       float: right;
       background: $blue;
       color: $white;
+
+      &:focus {
+        box-shadow: 0 0 0 3px #FFFFFF, 0 0 0px 5px rgba(69, 145, 191, 0.5);
+      }
 
       &:hover {
         background: $dark-blue;
@@ -219,19 +218,6 @@ body {
         border-color: $grey;
         color: $dark-grey;
         cursor: not-allowed;
-      }
-    }
-
-    
-    &:only-of-type {
-      float: none;
-      background: $light-grey;
-      color: $black;
-      border: none;
-
-      &:hover {
-        background: $grey;
-        color: $black;
       }
     }
   }
