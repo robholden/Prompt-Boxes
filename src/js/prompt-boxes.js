@@ -465,8 +465,7 @@
       // Build base elements
       var className = that._prefixes.toast + ' ' + opts.direction + ' ' + (stateClass || 'info');
       var base$ = document.createElement('div');
-      var inner$ = document.createTextNode(msg);
-      base$.appendChild(inner$);
+      base$.innerHTML = msg;
       base$.id = 'toast_' + that._toastQueue.length + '_' + Math.random();
       base$.className = className;
 
