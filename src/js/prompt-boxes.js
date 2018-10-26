@@ -355,7 +355,7 @@
         if (val === '') return submit$.setAttribute('disabled', 'disabled');
 
         submit$.removeAttribute('disabled');
-        if (ev.keyCode !== 13) return;
+        if (ev.keyCode !== 13 || opts.inputType === 'textarea') return;
 
         complete(val);
       }
