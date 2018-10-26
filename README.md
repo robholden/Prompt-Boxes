@@ -67,7 +67,7 @@ You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). 
 ~~~
   pb.success(
     'This is a permanent toast with a close option',  // Message text
-    { 
+    {
       duration: 0,      // Show permanently
       allowClose: true  // Add manual close button
     }
@@ -78,7 +78,7 @@ You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). 
 ~~~
 pb.success(
   'This is an example success toast'  // Message text
-  {}                                  // Addition options
+  {}                                  // Additional options
 );
 ~~~
 
@@ -86,7 +86,7 @@ pb.success(
 ~~~
 pb.error(
   'This is an example error toast'    // Message text
-  {}                                  // Addition options
+  {}                                  // Additional options
 );
 ~~~
 
@@ -94,40 +94,41 @@ pb.error(
 ~~~
 pb.info(
   'This is an example info toast' // Message text
-  {}                              // Addition options
+  {}                              // Additional options
 );
 ~~~
 
-#### Alert dialogue
+#### Alert dialog
 ~~~
 pb.alert(
   (confirmed) => alert('You have: ' + (confirmed ? 'confirmed' : 'cancelled')),
   'This is an example alert', // Message text
   'Ok',                       // Ok text
-  {}                          // Addition options
+  {}                          // Additional options
 );
 ~~~
 
-#### Confirmation dialogue
+#### Confirmation dialog
 ~~~
 pb.confirm(
   (outcome) => alert('You have: ' + (outcome ? 'confirmed' : 'cancelled')), // Callback
   'This is an example confirm',   // Message text
   'Yes',                          // Confirm text
   'No'                            // Cancel text
-  {}                              // Addition options
+  {}                              // Additional options
 );
 ~~~
 
-#### Prompt dialogue
+#### Prompt dialog
 ~~~
 pb.prompt(
   function (value) { alert('You have: ' + (value ? 'entered ' + value : 'cancelled')) }, // Callback
   'This is an example prompt',    // Message text
-  'text',                         // Input type
+  'textarea',                     // Input type
+  'A defult value',               // Default value
   'Submit',                       // Submit text
   'Cancel',                       // Cancel text
-  {}                              // Addition options
+  {}                              // Additional options
 );
 ~~~
 

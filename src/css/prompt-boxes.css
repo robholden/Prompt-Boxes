@@ -6,11 +6,23 @@ body {
   -webkit-box-sizing: border-box;
   box-sizing: border-box; }
 
-#pb-container, .pb-backdrop {
+#pb-container,
+.pb-backdrop {
   -webkit-transition: ease 0.25s;
   -o-transition: ease 0.25s;
   transition: ease 0.25s; }
-  #pb-container a, #pb-container button, #pb-container input, #pb-container textarea, #pb-container select, #pb-container div, .pb-backdrop a, .pb-backdrop button, .pb-backdrop input, .pb-backdrop textarea, .pb-backdrop select, .pb-backdrop div {
+  #pb-container a,
+  #pb-container button,
+  #pb-container input,
+  #pb-container textarea,
+  #pb-container select,
+  #pb-container div,
+  .pb-backdrop a,
+  .pb-backdrop button,
+  .pb-backdrop input,
+  .pb-backdrop textarea,
+  .pb-backdrop select,
+  .pb-backdrop div {
     -webkit-transition: ease 0.25s;
     -o-transition: ease 0.25s;
     transition: ease 0.25s; }
@@ -19,7 +31,12 @@ body {
   -webkit-transition: ease 0.25s;
   -o-transition: ease 0.25s;
   transition: ease 0.25s; }
-  .pb-toast a, .pb-toast button, .pb-toast input, .pb-toast textarea, .pb-toast select, .pb-toast div {
+  .pb-toast a,
+  .pb-toast button,
+  .pb-toast input,
+  .pb-toast textarea,
+  .pb-toast select,
+  .pb-toast div {
     -webkit-transition: ease 0.25s;
     -o-transition: ease 0.25s;
     transition: ease 0.25s; }
@@ -52,19 +69,23 @@ body {
   padding: 1em;
   border-radius: 2px;
   background: #FFF;
-  border-bottborder-bottom: 4px solid #CCC;
+  border-bottom: 4px solid #CCC;
   z-index: 99; }
   #pb-container.absolute {
     margin-top: 40vh; }
-  #pb-container input {
+  #pb-container input,
+  #pb-container textarea {
     display: block;
     width: 100%;
     padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid #EEE;
-    font-size: 1em;
-    border-radius: 2px; }
-    #pb-container input:focus, #pb-container input:active {
+    border-radius: 2px;
+    font-size: 0.9em;
+    font-family: sans-serif; }
+    #pb-container input:focus, #pb-container input:active,
+    #pb-container textarea:focus,
+    #pb-container textarea:active {
       outline: none;
       border-color: #CCC; }
   #pb-container[data-show] {

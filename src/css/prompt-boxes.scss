@@ -5,7 +5,7 @@ $black: #252525;
 $light-grey: #EEE;
 $grey: #CCC;
 $dark-grey: #999;
- 
+
 $light-blue: #79bde6;
 $blue: #4591bf;
 $dark-blue: #366988;
@@ -28,10 +28,16 @@ body {
   box-sizing: border-box;
 }
 
-#pb-container, .pb-backdrop {
+#pb-container,
+.pb-backdrop {
   transition: ease 0.25s;
 
-  a, button, input, textarea, select, div {
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  div {
     transition: ease 0.25s;
   }
 }
@@ -39,7 +45,12 @@ body {
 .pb-toast {
   transition: ease 0.25s;
 
-  a, button, input, textarea, select, div {
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  div {
     transition: ease 0.25s;
   }
 }
@@ -73,28 +84,32 @@ body {
     right: auto;
     left: auto;
   }
+
   padding: 1em;
   border-radius: $br;
 
   background: $white;
-  border-bottborder-bottom: 4px solid $grey;
+  border-bottom: 4px solid $grey;
 
   z-index: 99;
 
   &.absolute {
     margin-top: 40vh;
-  }  
+  }
 
-  input {
+  input,
+  textarea {
     display: block;
     width: 100%;
     padding: 0.5em;
     margin-bottom: 1em;
     border: 1px solid $light-grey;
-    font-size: 1em;
     border-radius: $br;
+    font-size: 0.9em;
+    font-family: sans-serif;
 
-    &:focus, &:active {
+    &:focus,
+    &:active {
       outline: none;
       border-color: $grey;
     }
@@ -112,6 +127,7 @@ body {
   right: 0;
   transform: scale(0);
   width: 400px;
+
   margin: {
     right: auto;
     left: auto;
@@ -139,7 +155,7 @@ body {
   &.error {
     background: $red;
   }
-  
+
   &.info {
     color: $black;
     background: $light-grey;
@@ -152,13 +168,14 @@ body {
   &.gone {
     transform: scale(0);
   }
-  
+
   &[data-close="true"] {
     padding-right: 3em;
   }
 
   .toast-close {
-    position: absolute;;
+    position: absolute;
+    ;
     right: 0.75em;
     top: 50%;
     margin-top: -13.5px;
@@ -208,7 +225,7 @@ body {
       &:hover {
         background: $dark-blue;
       }
-      
+
       &[disabled] {
         opacity: 0.5;
         background: none;

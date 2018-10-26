@@ -1,6 +1,14 @@
 (function (name, context, definition) {
   'use strict'
-  if (typeof window.define === 'function' && window.define.amd) { window.define(definition) } else if (typeof module !== 'undefined' && module.exports) { module.exports = definition() } else if (context.exports) { context.exports = definition() } else { context[name] = definition() }
+  if (typeof window.define === 'function' && window.define.amd) {
+    window.define(definition)
+  } else if (typeof module !== 'undefined' && module.exports) {
+    module.exports = definition()
+  } else if (context.exports) {
+    context.exports = definition()
+  } else {
+    context[name] = definition()
+  }
 })('PromptBoxes', this, function () {
   'use strict'
   var PromptBoxes = function (options) {
@@ -9,41 +17,41 @@
     }
 
     var defaultOptions = {
-      attrPrefix: 'pb',         // The class/id prefix for all elements
+      attrPrefix: 'pb', // The class/id prefix for all elements
       speeds: {
-        backdrop: 250,          // The enter/leaving animation speed of the backdrop
-        toasts: 250             // The enter/leaving animation speed of the toast
+        backdrop: 250, // The enter/leaving animation speed of the backdrop
+        toasts: 250 // The enter/leaving animation speed of the toast
       },
       alert: {
-        okText: 'Ok',           // The text for the ok button
-        okClass: '',            // A class for the ok button
+        okText: 'Ok', // The text for the ok button
+        okClass: '', // A class for the ok button
         closeWithEscape: false, // Allow closing with escaping
-        absolute: false         // Show prompt popup as absolute
+        absolute: false // Show prompt popup as absolute
       },
       confirm: {
         confirmText: 'Confirm', // The text for the confirm button
-        confirmClass: '',       // A class for the confirm button
-        cancelText: 'Cancel',   // The text for the cancel button
-        cancelClass: '',        // A class for the cancel button
-        closeWithEscape: true,  // Allow closing with escaping
-        absolute: false         // Show prompt popup as absolute
+        confirmClass: '', // A class for the confirm button
+        cancelText: 'Cancel', // The text for the cancel button
+        cancelClass: '', // A class for the cancel button
+        closeWithEscape: true, // Allow closing with escaping
+        absolute: false // Show prompt popup as absolute
       },
       prompt: {
-        inputType: 'text',      // The type of input 'text' | 'password' etc.
-        submitText: 'Submit',   // The text for the submit button
-        submitClass: '',        // A class for the submit button
-        cancelText: 'Cancel',   // The text for the cancel button
-        cancelClass: '',        // A class for the cancel button
-        closeWithEscape: true,  // Allow closing with escaping
-        absolute: false         // Show prompt popup as absolute
+        inputType: 'text', // The type of input 'text' | 'password' etc.
+        submitText: 'Submit', // The text for the submit button
+        submitClass: '', // A class for the submit button
+        cancelText: 'Cancel', // The text for the cancel button
+        cancelClass: '', // A class for the cancel button
+        closeWithEscape: true, // Allow closing with escaping
+        absolute: false // Show prompt popup as absolute
       },
       toasts: {
-        direction: 'top',       // Which direction to show the toast  'top' | 'bottom'
-        max: 5,                 // The number of toasts that can be in the stack
-        duration: 5000,         // The time the toast appears
-        showTimerBar: true,     // Show timer bar countdown
-        closeWithEscape: true,  // Allow closing with escaping
-        allowClose: false,      // Whether to show a "x" to close the toast
+        direction: 'top', // Which direction to show the toast  'top' | 'bottom'
+        max: 5, // The number of toasts that can be in the stack
+        duration: 5000, // The time the toast appears
+        showTimerBar: true, // Show timer bar countdown
+        closeWithEscape: true, // Allow closing with escaping
+        allowClose: false, // Whether to show a "x" to close the toast
       }
     }
     this.options = this._extend(options, defaultOptions);
@@ -54,7 +62,9 @@
   }
   PromptBoxes.prototype = {
     _extend: function (source, target) {
-      if (source == null) { return target }
+      if (source == null) {
+        return target
+      }
       for (var k in source) {
         if (source[k] != null && target[k] !== source[k]) {
           target[k] = source[k]
@@ -167,7 +177,9 @@
         that._destroyBase([backdrop$, base$]);
       };
 
-      ok$.onclick = function () { complete(true); }
+      ok$.onclick = function () {
+        complete(true);
+      }
 
       buttons$.appendChild(ok$);
       base$.appendChild(message$);
@@ -186,7 +198,7 @@
     },
 
     /**
-     * Show a confirm dialogue with cancel and confirm actions
+     * Show a confirm dialog with cancel and confirm actions
      *
      * @param {*} callback the function called on complete. (outome) => { }
      * @param {*} msg The message to display
@@ -203,7 +215,7 @@
       if (!!confirmText) opts.confirmText = confirmText;
       if (!!cancelText) opts.cancelText = cancelText;
 
-      // Base elements      
+      // Base elements
       var backdrop$ = document.createElement('div');
       var base$ = document.createElement('div');
       base$.id = that._prefixes.container;
@@ -239,7 +251,9 @@
         that._destroyBase([backdrop$, base$]);
       };
 
-      cancel$.onclick = function () { complete(); }
+      cancel$.onclick = function () {
+        complete();
+      }
       confirm$.onclick = function () {
         complete(true);
       }
@@ -262,16 +276,17 @@
     },
 
     /**
-     * Show a prompt dialogue with an input field, cancel and submit action
+     * Show a prompt dialog with an input field, cancel and submit action
      *
      * @param {*} callback the function called on complete. (value) => { } // false is return for cancel
      * @param {*} inputType The input type. If undefined it will use the options value
+     * @param {*} value A default value the input will have
      * @param {*} submitText The submit button text. If undefined it will use the options value
      * @param {*} cancelText The cancel button text. If undefined it will use the options value
      * @param {*} msg The message to display
      * @param {*} opts Prompt options to override
      */
-    prompt: function (callback, msg, inputType, submitText, cancelText, opts) {
+    prompt: function (callback, msg, inputType, value, submitText, cancelText, opts) {
       var that = this;
 
       // Re-create options
@@ -302,8 +317,20 @@
       message$.innerHTML = msg;
 
       // Input element
-      var input$ = document.createElement('input');
-      input$.type = opts.inputType;
+      var input$;
+      switch (opts.inputType) {
+        case 'textarea':
+          input$ = document.createElement('textarea');
+          break;
+
+        default:
+          input$ = document.createElement('input');
+          input$.type = opts.inputType;
+          break;
+      };
+
+      // Add value to input?
+      if (!!value) input$.value = value;
 
       // Buttons
       var buttons$ = document.createElement('div');
@@ -311,7 +338,7 @@
       var cancel$ = document.createElement('button');
       buttons$.className = that._prefixes.buttons;
       submit$.className = opts.submitClass;
-      submit$.setAttribute('disabled', 'disabled');
+      if (!value) submit$.setAttribute('disabled', 'disabled');
       submit$.innerHTML = opts.submitText;
       cancel$.className = opts.cancelClass;
       cancel$.innerHTML = opts.cancelText;
@@ -333,7 +360,9 @@
         complete(val);
       }
 
-      cancel$.onclick = function () { complete(); }
+      cancel$.onclick = function () {
+        complete();
+      }
       submit$.onclick = function () {
         var value = input$.value;
         if (value === '') return input$.focus();
@@ -360,12 +389,12 @@
     },
 
     /**
-     * 
-     * 
      *
-     *    TOASTS 
-     * 
-     * 
+     *
+     *
+     *    TOASTS
+     *
+     *
      */
     _toastQueue: [],
 
@@ -378,7 +407,10 @@
       }
 
       // Add toast to queue
-      that._toastQueue.unshift({ id: el$.id, className: className });
+      that._toastQueue.unshift({
+        id: el$.id,
+        className: className
+      });
 
       // Trigger animation once loaded to DOM
       setTimeout(function () {
@@ -406,7 +438,11 @@
       var destroyToast = function (el$) {
         el$.className = 'gone ' + el$.className;
         setTimeout(function () {
-          try { el$.remove(); } catch (ex) { console.error(ex) }
+          try {
+            el$.remove();
+          } catch (ex) {
+            console.error(ex)
+          }
         }, that.options.speeds.toasts);
       };
 
@@ -505,9 +541,11 @@
           base$.appendChild(timerBar$);
 
           // Add timer countdown
-          setTimeout(function () { timerBar$.style.width = '100%' }, 50);
+          setTimeout(function () {
+            timerBar$.style.width = '100%'
+          }, 50);
         }
-        
+
         // Hide toast once completed time
         setTimeout(function () {
           that._removeToast(base$);
