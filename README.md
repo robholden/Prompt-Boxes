@@ -1,17 +1,14 @@
 # Prompt-Boxes
 A small package I created for my own project so currently there's limited functionality. I will update it as and when I require more functionality (or a request is made).
 
-##### Migrating from version <2.0 to 2.0
-`I've re-written a lot of mechanics. There are a lot more options available to each instance. Please review the ReadMe and update your current implementation accordingly.`
-
 #### Demo
-You can find an old demo [here](https://iamrobert.co.uk/projects/prompt-boxes). For a better demo, download the repo and open the 'index.html' page within the demo folder
+You can find a live demo [here](https://iamrobert.co.uk/projects/prompt-boxes). Or, you can download the repo and open the 'index.html' page within the demo folder
 
 #### Installation
 ``npm install prompt-boxes --save``
 
 #### Screenshots
-<img src="https://media.giphy.com/media/oXcJZgdxOLBvy/giphy.gif" width="275"> <img src="https://media.giphy.com/media/OAscHqRSi6a9W/giphy.gif" width="275"> <img src="https://media.giphy.com/media/10BsPpLXKTW67m/giphy.gif" width="275">
+<img src="https://github.com/robholden/Prompt-Boxes/raw/master/demo/example.PNG" width="400">
 
 #### Add scripts
 ~~~
